@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     private float _countdownToStartTimer = 3f;
     private float _gamePlayingTimer;
     private float _countdownToReloadLevel = 3f;
-    private float _countdownToLoadNextLevel;
+    private float _countdownToLoadNextLevel = 3f;
 
     private void Awake()
     {
@@ -53,13 +53,18 @@ public class GameManager : MonoBehaviour
                 break;
             case State.GamePlaying:
                 break;
-            case State.GameFinished:
-                break;
             case State.GameOver:
                 _countdownToReloadLevel -= Time.deltaTime;
                 if (_countdownToReloadLevel < 0f)
                 {
-                    SceneLoader.Load(SceneLoader.Scene.TestScene);
+                    SceneLoader.Load(SceneLoader.Scene.Level1);
+                }
+                break;
+            case State.GameFinished:
+                _countdownToLoadNextLevel -= Time.deltaTime;
+                if (_countdownToLoadNextLevel < 0f)
+                {
+                    SceneLoader.Load(SceneLoader.GetCurrentScene() + 1);
                 }
                 break;
         }
