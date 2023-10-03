@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class RocketCollisionHandler : MonoBehaviour
 {
-    private bool _isPowerUpActive;
-    
     private void OnCollisionEnter(Collision other)
     {
         switch (other.gameObject.tag)

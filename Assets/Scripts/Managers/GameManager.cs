@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 public class GameManager : MonoBehaviour
 {
@@ -57,7 +58,7 @@ public class GameManager : MonoBehaviour
                 _countdownToReloadLevel -= Time.deltaTime;
                 if (_countdownToReloadLevel < 0f)
                 {
-                    SceneLoader.Load(SceneLoader.Scene.Level1);
+                    SceneLoader.Load(SceneLoader.GetCurrentScene());
                 }
                 break;
             case State.GameFinished:
