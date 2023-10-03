@@ -9,7 +9,7 @@ public class Fuel : MonoBehaviour
     
     [SerializeField] private float maxFuelCapacity = 1000f;
     private float _currentFuelCapacity;
-    private float _amountFuelUsed = 1f;
+    private float _amountFuelUsed = .1f;
     
 
     private void Awake()

@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public static class SceneLoader
@@ -15,12 +14,26 @@ public static class SceneLoader
 
     public static void Load(Scene targetScene)
     {
-        _currentScene = targetScene;
         SceneManager.LoadScene(targetScene.ToString());
     }
 
     public static Scene GetCurrentScene()
     {
+        switch (SceneManager.GetActiveScene().buildIndex)
+        {
+            case 0:
+                _currentScene = Scene.MainMenu;
+                break;
+            case 1:
+                _currentScene = Scene.Level1;
+                break;
+            case 2:
+                _currentScene = Scene.Level2;
+                break;
+            case 3:
+                _currentScene = Scene.Level3;
+                break;
+        }
         return _currentScene;
     }
 }

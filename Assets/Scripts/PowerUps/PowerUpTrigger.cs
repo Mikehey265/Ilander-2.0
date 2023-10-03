@@ -6,6 +6,7 @@ public class PowerUpTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
+        Debug.Log(powerUp.name);
         Destroy(gameObject);
         powerUp.ApplyEffect(other.gameObject);
     }

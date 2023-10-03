@@ -8,7 +8,7 @@ public class InputManager : MonoBehaviour
     public static Action OnGameUnpaused;
 
     private GameControls _gameControls;
-    private static bool _isGamePaused = false;
+    private static bool _isGamePaused;
 
     private void Awake()
     {
@@ -17,6 +17,7 @@ public class InputManager : MonoBehaviour
 
     private void Start()
     {
+        _isGamePaused = false;
         _gameControls.Pause.PauseAction.performed += PauseAction;
     }
 
