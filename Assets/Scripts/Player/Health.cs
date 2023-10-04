@@ -1,14 +1,14 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Health : MonoBehaviour
 {
     public static Health Instance { get; private set; }
-
-    private static int playerCount;
     
     [SerializeField] private float startHealthAmount = 100f;
+    [SerializeField] private float defaultDamageAmount = 20f;
     private float _currentHealthAmount;
-    private float damageAmount = 20f;
+    private float _currentDamageAmount;
 
     private void Awake()
     {
@@ -18,19 +18,17 @@ public class Health : MonoBehaviour
     private void Start()
     {
         _currentHealthAmount = startHealthAmount;
+        _currentDamageAmount = defaultDamageAmount;
     }
     
     private void OnEnable()
     {
         GameManager.OnRocketHit += TakeDamage;
-        playerCount++;
-        Debug.Log(playerCount);
     }
 
     private void OnDisable()
     {
         GameManager.OnRocketHit -= TakeDamage;
-        playerCount--;
     }
 
     public float GetCurrentHealth()
@@ -43,9 +41,9 @@ public class Health : MonoBehaviour
         return startHealthAmount;
     }
 
-    public int GetPlayerCount()
+    public float GetDefaultDamageAmount()
     {
-        return playerCount;
+        return defaultDamageAmount;
     }
     
     public void Heal(float healAmount)
@@ -56,12 +54,12 @@ public class Health : MonoBehaviour
 
     public void ModifyDamageTaken(float amount)
     {
-        damageAmount = amount;
+        _currentDamageAmount = amount;
     }
     
     private void TakeDamage()
     {
-        _currentHealthAmount -= damageAmount;
+        _currentHealthAmount -= _currentDamageAmount;
         HealthBarUI.OnHealthModified?.Invoke();
     }
 }

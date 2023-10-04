@@ -26,7 +26,7 @@ public class RocketMovement : MonoBehaviour
         GameManager.OnRocketFinished += DisableMovement;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if(!GameManager.Instance.IsGamePlaying()) return;
         ThrustPerformed();
@@ -45,16 +45,12 @@ public class RocketMovement : MonoBehaviour
 
     private void RotatePerformed()
     {
-        _rigidbody.freezeRotation = true;
-        
         if (_controls.Rocket.Rotate.IsPressed())
         {
             float inputValue = _controls.Rocket.Rotate.ReadValue<float>();
             float velocity = inputValue * rotateSpeed * Time.deltaTime;
             transform.Rotate(new Vector3(0f, 0f, velocity));
         }
-        
-        _rigidbody.freezeRotation = false; 
     }
 
     private void DisableMovement()

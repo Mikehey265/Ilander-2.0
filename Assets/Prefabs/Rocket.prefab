@@ -188,4 +188,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71e73a4a81342f14c97c3713fdcdf6bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxFuelCapacity: 5000
+  maxFuelCapacity: 1000

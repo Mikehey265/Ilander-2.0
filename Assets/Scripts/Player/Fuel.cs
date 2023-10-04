@@ -8,8 +8,9 @@ public class Fuel : MonoBehaviour
     public static Action OnThrustPerformed;
     
     [SerializeField] private float maxFuelCapacity = 1000f;
+    [SerializeField] private float defaultFuelUsage = 1f;
     private float _currentFuelCapacity;
-    private float _amountFuelUsed = .1f;
+    private float _currentFuelUsage;
     
 
     private void Awake()
@@ -20,6 +21,7 @@ public class Fuel : MonoBehaviour
     private void Start()
     {
         _currentFuelCapacity = maxFuelCapacity;
+        _currentFuelUsage = defaultFuelUsage;
     }
     
     private void OnEnable()
@@ -42,14 +44,19 @@ public class Fuel : MonoBehaviour
         return maxFuelCapacity;
     }
 
+    public float GetDefaultFuelUsage()
+    {
+        return defaultFuelUsage;
+    }
+
     public void ModifyFuelUsage(float amount)
     {
-        _amountFuelUsed = amount;
+        _currentFuelUsage = amount;
     }
 
     private void DecreaseFuel()
     {
-        _currentFuelCapacity -= _amountFuelUsed;
+        _currentFuelCapacity -= _currentFuelUsage;
         FuelBarUI.OnFuelModified?.Invoke();
     }
 }
