@@ -119,5 +119,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUp: {fileID: 11400000, guid: 64b10a5d8d8e8e1479e85a92c1572c35, type: 2}
-  powerUpTimer: 2
-  shouldHaveTimer: 0
+  shouldHaveTimer: 1
