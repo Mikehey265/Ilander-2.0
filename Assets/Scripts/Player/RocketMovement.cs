@@ -4,6 +4,7 @@ public class RocketMovement : MonoBehaviour
 {
     [SerializeField] private float thrustSpeed = 1000f;
     [SerializeField] private float rotateSpeed = 50f;
+    [SerializeField] private Light boosterLight;
     
     // [SerializeField] private AudioClip thrustSFX;
     
@@ -28,6 +29,7 @@ public class RocketMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        boosterLight.enabled = false;
         if(!GameManager.Instance.IsGamePlaying()) return;
         ThrustPerformed();
         RotatePerformed();
@@ -39,6 +41,7 @@ public class RocketMovement : MonoBehaviour
         {
             Fuel.OnThrustPerformed?.Invoke();
             _rigidbody.AddRelativeForce(Vector3.up * (thrustSpeed * Time.deltaTime));
+            boosterLight.enabled = true;
         }
         
     }
