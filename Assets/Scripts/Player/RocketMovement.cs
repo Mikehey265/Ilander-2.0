@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class RocketMovement : MonoBehaviour
 {
+    public static Action OnGravityModified;
+    
     [SerializeField] private float thrustSpeed = 1000f;
     [SerializeField] private float rotateSpeed = 50f;
     [SerializeField] private Light boosterLight;
@@ -25,6 +28,16 @@ public class RocketMovement : MonoBehaviour
     {
         GameManager.OnRocketCrashed += DisableMovement;
         GameManager.OnRocketFinished += DisableMovement;
+    }
+
+    private void OnEnable()
+    {
+        OnGravityModified += SwitchGravity;
+    }
+
+    private void OnDisable()
+    {
+        OnGravityModified -= SwitchGravity;
     }
 
     private void FixedUpdate()
@@ -59,5 +72,10 @@ public class RocketMovement : MonoBehaviour
     private void DisableMovement()
     {
         _controls.Dispose();
+    }
+
+    private void SwitchGravity()
+    {
+        _rigidbody.useGravity = !_rigidbody.useGravity;
     }
 }

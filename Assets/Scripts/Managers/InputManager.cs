@@ -33,16 +33,19 @@ public class InputManager : MonoBehaviour
 
     public static void TogglePauseMenu()
     {
-        _isGamePaused = !_isGamePaused;
-        if (_isGamePaused)
+        if (!GameManager.Instance.IsScoreWindowOpen())
         {
-            Time.timeScale = 0f;
-            OnGamePaused?.Invoke();
-        }
-        else
-        {
-            Time.timeScale = 1f;
-            OnGameUnpaused?.Invoke();
+            _isGamePaused = !_isGamePaused;
+            if (_isGamePaused)
+            {
+                Time.timeScale = 0f;
+                OnGamePaused?.Invoke();
+            }
+            else
+            {
+                Time.timeScale = 1f;
+                OnGameUnpaused?.Invoke();
+            }   
         }
     }
     
