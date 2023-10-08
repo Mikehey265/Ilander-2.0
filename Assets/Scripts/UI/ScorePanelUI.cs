@@ -9,6 +9,7 @@ public class ScorePanelUI : MonoBehaviour
     [SerializeField] private Button mainMenuButton;
     [SerializeField] private TextMeshProUGUI timeText;
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI highScoreText;
 
     private void Awake()
     {
@@ -41,8 +42,17 @@ public class ScorePanelUI : MonoBehaviour
 
     private void UpdateScorePanel()
     {
-        timeText.text = "Your time: " + GameManager.Instance.GetFinishedLevelTime();
-        scoreText.text = "Your score: " + GameManager.Instance.GetFinalScore();
+        timeText.text = "Your time: " + GameManager.Instance.GetFinishedLevelTime() + "s";
+        scoreText.text = "Your score: " + ScoreManager.Instance.GetFinalScore();
+
+        if (ScoreManager.Instance.IsHighScorePresent())
+        {
+            highScoreText.text = "Current high score: " + ScoreManager.Instance.GetHighScore();
+        }
+        else
+        {
+            highScoreText.text = "Current high score: 0";
+        }
         Show();
     }
 

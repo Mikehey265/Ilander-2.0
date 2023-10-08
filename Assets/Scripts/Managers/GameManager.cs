@@ -27,7 +27,6 @@ public class GameManager : MonoBehaviour
     private float _countdownToShowScorePanel = 2f;
     private float _gamePlayingTimer;
     private int _finishedLevelTime;
-    private int _numberOfHits;
     private int _finalScore;
 
     private void Awake()
@@ -42,10 +41,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         OnStateChanged?.Invoke();
-        OnRocketHit += UpdateNumberOfHits;
         
         _gamePlayingTimer = 0f;
-        _numberOfHits = 0;
     }
 
     private void Update()
@@ -72,12 +69,10 @@ public class GameManager : MonoBehaviour
                 break;
             case State.GameFinished:
                 _finishedLevelTime = (int)_gamePlayingTimer;
-                Score();
                 _countdownToShowScorePanel -= Time.deltaTime;
                 if (_countdownToShowScorePanel < 0f)
                 {
                     _state = State.ScoreWindow;
-                    // SceneLoader.Load(SceneLoader.GetCurrentScene() + 1);
                 }
                 break;
             case State.ScoreWindow:
@@ -106,34 +101,9 @@ public class GameManager : MonoBehaviour
         return _countdownToStartTimer;
     }
 
-    public int GetFinalScore()
-    {
-        return _finalScore;
-    }
-
     public int GetFinishedLevelTime()
     {
         return _finishedLevelTime;
-    }
-
-    private void Score()
-    {
-        if (_numberOfHits == 0)
-        {
-            _finalScore = _finishedLevelTime * 10;
-        }
-        else
-        {
-            _finalScore = _finishedLevelTime / (_numberOfHits + 1) * 10;
-        }
-        Debug.Log("Time: " + _finishedLevelTime);
-        Debug.Log("Number Of Hits: " + _numberOfHits);
-        Debug.Log("Final Score: " + _finalScore);
-    }
-
-    private void UpdateNumberOfHits()
-    {
-        _numberOfHits++;
     }
 
     private void RocketCrashed()
