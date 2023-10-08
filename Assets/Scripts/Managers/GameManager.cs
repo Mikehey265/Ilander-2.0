@@ -77,6 +77,7 @@ public class GameManager : MonoBehaviour
                 break;
             case State.ScoreWindow:
                 OnScorePanelActivated?.Invoke();
+                ScoreManager.Instance.SaveScore(SceneLoader.GetCurrentScene());
                 break;
         }
     }

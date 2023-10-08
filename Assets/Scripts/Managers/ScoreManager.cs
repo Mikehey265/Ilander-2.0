@@ -4,7 +4,7 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance { get; private set; }
 
-    private const string PLAYER_PREFS_HIGHSCORE = "Score";
+    private const string PLAYER_PREFS_HIGHSCORE = "Score_";
 
     private int _numberOfHits;
     private int _finalScore;
@@ -14,28 +14,20 @@ public class ScoreManager : MonoBehaviour
     {
         Instance = this;
 
-        if (PlayerPrefs.HasKey(PLAYER_PREFS_HIGHSCORE))
+        if (PlayerPrefs.HasKey(PLAYER_PREFS_HIGHSCORE + SceneLoader.GetCurrentScene()))
         {
-            _highScore = PlayerPrefs.GetInt(PLAYER_PREFS_HIGHSCORE);
+            _highScore = PlayerPrefs.GetInt(PLAYER_PREFS_HIGHSCORE + SceneLoader.GetCurrentScene());
         }
     }
 
     private void Start()
     {
         GameManager.OnRocketHit += UpdateNumberOfHits;
-        GameManager.OnScorePanelActivated += SaveScore;
+        GameManager.OnScorePanelActivated += Score;
         
         _numberOfHits = 0;
     }
 
-    private void Update()
-    {
-        if (GameManager.Instance.IsScoreWindowOpen())
-        {
-            Score();
-        }
-    }
-    
     public int GetFinalScore()
     {
         return _finalScore;
@@ -43,7 +35,7 @@ public class ScoreManager : MonoBehaviour
 
     public bool IsHighScorePresent()
     {
-        return PlayerPrefs.HasKey(PLAYER_PREFS_HIGHSCORE);
+        return PlayerPrefs.HasKey(PLAYER_PREFS_HIGHSCORE + SceneLoader.GetCurrentScene());
     }
 
     public int GetHighScore()
@@ -57,26 +49,23 @@ public class ScoreManager : MonoBehaviour
         
         if (_numberOfHits == 0)
         {
-            _finalScore = finishedLevelTime * 10;
+            // _finalScore = finishedLevelTime * 10;
+            _finalScore = 100 * 100 / finishedLevelTime;
         }
         else
         {
-            _finalScore = finishedLevelTime / (_numberOfHits + 1) * 10;
+            _finalScore = 100 * (100 / finishedLevelTime) / (_numberOfHits + 1);
         }
-        
-        Debug.Log("Time: " + finishedLevelTime);
-        Debug.Log("Number Of Hits: " + _numberOfHits);
-        Debug.Log("Final Score: " + _finalScore);
     }
 
-    private void SaveScore()
+    public void SaveScore(SceneLoader.Scene scene)
     {
-        if (PlayerPrefs.HasKey(PLAYER_PREFS_HIGHSCORE))
+        if (PlayerPrefs.HasKey(PLAYER_PREFS_HIGHSCORE + scene))
         {
-            if (_finalScore > PlayerPrefs.GetInt(PLAYER_PREFS_HIGHSCORE))
+            if (_finalScore > PlayerPrefs.GetInt(PLAYER_PREFS_HIGHSCORE + scene))
             {
                 _highScore = _finalScore;
-                PlayerPrefs.SetInt(PLAYER_PREFS_HIGHSCORE, _highScore);
+                PlayerPrefs.SetInt(PLAYER_PREFS_HIGHSCORE + scene, _highScore);
                 PlayerPrefs.Save();
             }
         }
@@ -85,7 +74,7 @@ public class ScoreManager : MonoBehaviour
             if (_finalScore > _highScore)
             {
                 _highScore = _finalScore;
-                PlayerPrefs.SetInt(PLAYER_PREFS_HIGHSCORE, _highScore);
+                PlayerPrefs.SetInt(PLAYER_PREFS_HIGHSCORE + scene, _highScore);
                 PlayerPrefs.Save();
             }
         }
