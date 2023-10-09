@@ -31,6 +31,11 @@ public class ScorePanelUI : MonoBehaviour
 
     private void Start()
     {
+        if (SceneLoader.GetCurrentScene() == SceneLoader.Scene.Level3)
+        {
+            nextLevelButton.interactable = false;
+        }
+        
         GameManager.OnScorePanelActivated += UpdateScorePanel;
         Hide();
     }
