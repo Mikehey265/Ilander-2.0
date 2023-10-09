@@ -244,8 +244,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e594fa57df6244b8c5b1b9d8807d1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrustSpeed: 1000
-  rotateSpeed: 50
+  thrustSpeed: 1200
+  rotateSpeed: 75
   boosterLight: {fileID: 8735050159083570103}
 --- !u!114 &1054067206134464615
 MonoBehaviour:
