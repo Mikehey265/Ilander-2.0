@@ -49,7 +49,6 @@ public class ScoreManager : MonoBehaviour
         
         if (_numberOfHits == 0)
         {
-            // _finalScore = finishedLevelTime * 10;
             _finalScore = 100 * 100 / finishedLevelTime;
         }
         else

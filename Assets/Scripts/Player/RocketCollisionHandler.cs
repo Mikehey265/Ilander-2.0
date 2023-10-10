@@ -13,15 +13,12 @@ public class RocketCollisionHandler : MonoBehaviour
                 if (Health.Instance.GetCurrentHealth() < 1)
                 {
                     GameManager.OnRocketCrashed?.Invoke();
-                    //particle effect
                 }
                 break;
             case "Friendly":
-                Debug.Log("friendly gameobject");
                 break;
             case "Finish":
                 GameManager.OnRocketFinished?.Invoke();
-                //particle effects
                 break;
         }
     }

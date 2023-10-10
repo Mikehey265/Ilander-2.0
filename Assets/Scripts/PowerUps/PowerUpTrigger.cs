@@ -8,7 +8,7 @@ public class PowerUpTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
-        // Debug.Log(powerUp.name);
+        Debug.Log(powerUp.name);
         PowerUpManager.Instance.AddActivePowerUp(powerUp, shouldHaveTimer);
         
         powerUp.ApplyEffect();

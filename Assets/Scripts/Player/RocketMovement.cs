@@ -4,16 +4,14 @@ using UnityEngine;
 public class RocketMovement : MonoBehaviour
 {
     public static Action OnGravityModified;
-    
+
+    [SerializeField] private ParticleSystem boostParticles;
     [SerializeField] private float thrustSpeed = 1000f;
     [SerializeField] private float rotateSpeed = 50f;
     [SerializeField] private Light boosterLight;
     
-    // [SerializeField] private AudioClip thrustSFX;
-    
     private GameControls _controls;
     private Rigidbody _rigidbody;
-    private AudioSource _audioSource;
 
     private void Awake()
     {
@@ -21,7 +19,6 @@ public class RocketMovement : MonoBehaviour
         _controls.Rocket.Enable();
 
         _rigidbody = GetComponent<Rigidbody>();
-        _audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -54,9 +51,13 @@ public class RocketMovement : MonoBehaviour
         {
             Fuel.OnThrustPerformed?.Invoke();
             _rigidbody.AddRelativeForce(Vector3.up * (thrustSpeed * Time.deltaTime));
+            boostParticles.Play();
             boosterLight.enabled = true;
         }
-        
+        else
+        {
+            boostParticles.Stop();   
+        }
     }
 
     private void RotatePerformed()
