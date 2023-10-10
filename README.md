@@ -10,7 +10,7 @@ Ilander is a game made as a project for finishing first course in FutureGames ca
 
 ## General info
 
-This project is made with new input system and cinemachine. For now, game can be played only by one player and only with keyboard. A - tilt rocket left, D - tilt rocket right, SPACE - use rocket booster. The first scene player should see is Main Menu scene. From there, there are 3 levels that come one after another. There is only one win condition: player needs to go from launch pad (blue) to the landing pad (green). However, there are two lose conditions: if player touches anything else, health is reduced and when health hits zero, player need to restart the current level. Second lose condition is runing out of the fuel, that is being used when using main rocket thrust. Player can beat his own high scores that are displayed in main menu. Every level has its own high score. 
+This project is made with new input system and cinemachine. It does not look pretty to be honest, there is no real art. I used only unity cubes, particles etc. For now, game can be played only by one player and only with keyboard. A - tilt rocket left, D - tilt rocket right, SPACE - use rocket booster. The first scene player should see is Main Menu scene. From there, there are 3 levels that come one after another. There is only one win condition: player needs to go from launch pad (blue) to the landing pad (green). However, there are two lose conditions: if player touches anything else, health is reduced and when health hits zero, player need to restart the current level. Second lose condition is runing out of the fuel, that is being used when using main rocket thrust. Player can beat his own high scores that are displayed in main menu. Every level has its own high score. 
 
 ## Game mechanics
 
@@ -27,5 +27,15 @@ This project is made with new input system and cinemachine. For now, game can be
 ## Code
 
 I tried to use as much optimized code as I could for my current knowledge. For powerups I used scriptable object and abstract class to inherit from. Back at the time I used to use a lot of GetComponent or FindObjectOfType. For this project I used Events instead. <br/>
-Score is based on time and numbers of collisions. Calculation looks like this: 100 * ( 100 / time) / (number of collisions + 1). If there are 0 collisions, last division is ignored.
+Score is based on time and numbers of collisions. Equation looks like this: 20 * ( 100 / time) / (number of collisions + 1). If there are 0 collisions, last division is ignored.
 <br/>
+The most math in this project I used for creating an "ObstacleMover" script. It does.. move an obstacle, thanks to the sine wave going back and forth, adding vector to the starting position of an obstacle and applying movement factor from 0 (starting position) to 1 (starting position + added vector). I added comments in the script so it would be easier to understand.
+
+## Sources
+
+* An idea of a gameplay came to my mind from c# course from GameDev.tv. I used to learn basics from them and one of the projects called "project boost" was the one I relied on. Here's the link to the course: https://www.udemy.com/course/unitycourse2/ 
+* For new input system I used recorded lessons from FutureGames and also this video: https://www.youtube.com/watch?v=zIhtPSX8hqA 
+* I made User Interface mostly by myself, but I want to put a link to a long tutorial where I learned more intermediate things, as well as this UI. Here's the link: https://www.youtube.com/watch?v=AmGSEH7QcDg&t=7449s , and I actually created "Kitchen Chaos" game with this tutorial here: [Kitchen Chaos](https://github.com/Mikehey265/KitchenChaos) 
+* Spawning powerups: https://www.youtube.com/watch?v=E40ZdSaGsZY 
+* Moving obstacle feature was also done thanks to the course from GameDev.tv. I used my knowledge of sine waves and Vectors to combine it into working system. The same link to the same course: https://www.udemy.com/course/unitycourse2/ . And I will also attach links to wikipedia about sine wave: https://en.wikipedia.org/wiki/Sine_and_cosine and turn: https://en.wikipedia.org/wiki/Turn_(angle)
+
