@@ -9,7 +9,7 @@ public class GamePauseUI : MonoBehaviour
 
     private void Awake()
     {
-        resumeButton.onClick.AddListener(InputManager.TogglePauseMenu );
+        resumeButton.onClick.AddListener(PauseMenu.TogglePauseMenu );
         
         restartButton.onClick.AddListener(() =>
         {
@@ -25,16 +25,16 @@ public class GamePauseUI : MonoBehaviour
 
     private void Start()
     {
-        InputManager.OnGamePaused += GamePaused;
-        InputManager.OnGameUnpaused += GameUnpaused;
+        PauseMenu.OnGamePaused += GamePaused;
+        PauseMenu.OnGameUnpaused += GameUnpaused;
         
         Hide();
     }
 
     private void OnDestroy()
     {
-        InputManager.OnGamePaused -= GamePaused;
-        InputManager.OnGameUnpaused -= GameUnpaused;
+        PauseMenu.OnGamePaused -= GamePaused;
+        PauseMenu.OnGameUnpaused -= GameUnpaused;
     }
 
     private void GamePaused()

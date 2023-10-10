@@ -53,7 +53,7 @@ public class ScoreManager : MonoBehaviour
         }
         else
         {
-            _finalScore = 100 * (100 / finishedLevelTime) / (_numberOfHits + 1);
+            _finalScore = 20 * (100 / finishedLevelTime) / (_numberOfHits + 1);
         }
     }
 

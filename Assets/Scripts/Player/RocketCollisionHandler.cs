@@ -18,7 +18,10 @@ public class RocketCollisionHandler : MonoBehaviour
             case "Friendly":
                 break;
             case "Finish":
-                GameManager.OnRocketFinished?.Invoke();
+                if (Health.Instance.GetCurrentHealth() > 0)
+                {
+                    GameManager.OnRocketFinished?.Invoke();   
+                }
                 break;
         }
     }

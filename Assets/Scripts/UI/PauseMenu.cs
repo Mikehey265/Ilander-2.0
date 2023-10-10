@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputManager : MonoBehaviour
+public class PauseMenu : MonoBehaviour
 {
     public static Action OnGamePaused;
     public static Action OnGameUnpaused;
