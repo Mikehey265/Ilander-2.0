@@ -10,7 +10,7 @@ public class FuelBuff : PowerUp
         Fuel.Instance.ModifyFuelUsage(fuelUseAmount);
     }
 
-    public override void ResetEffect()
+    public override void RemoveEffect()
     {
         Fuel.Instance.ModifyFuelUsage(Fuel.Instance.GetDefaultFuelUsage());
     }

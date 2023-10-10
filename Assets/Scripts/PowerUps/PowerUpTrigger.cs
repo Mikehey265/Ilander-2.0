@@ -19,7 +19,7 @@ public class PowerUpTrigger : MonoBehaviour
 
     private void ResetPowerUpEffect()
     {
-        powerUp.ResetEffect();
+        powerUp.RemoveEffect();
         PowerUpManager.Instance.RemoveExpiredPowerUp(powerUp);
         Destroy(gameObject);
     }

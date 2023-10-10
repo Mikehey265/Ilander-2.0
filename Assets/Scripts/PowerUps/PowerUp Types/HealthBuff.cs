@@ -11,7 +11,7 @@ public class HealthBuff : PowerUp
         Health.Instance.Heal(amount);
     }
 
-    public override void ResetEffect()
+    public override void RemoveEffect()
     {
         
     }
