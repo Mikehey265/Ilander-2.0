@@ -8,7 +8,7 @@ public class NoGravity : PowerUp
         RocketMovement.OnGravityModified?.Invoke();
     }
 
-    public override void ResetEffect()
+    public override void RemoveEffect()
     {
         RocketMovement.OnGravityModified?.Invoke();
     }

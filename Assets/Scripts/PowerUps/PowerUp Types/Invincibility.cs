@@ -8,7 +8,7 @@ public class Invincibility : PowerUp
         Health.Instance.ModifyDamageTaken(0f);
     }
 
-    public override void ResetEffect()
+    public override void RemoveEffect()
     {
         Health.Instance.ModifyDamageTaken(Health.Instance.GetDefaultDamageAmount());
     }
